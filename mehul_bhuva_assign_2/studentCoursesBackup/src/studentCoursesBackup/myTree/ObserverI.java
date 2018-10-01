@@ -1,5 +1,7 @@
 package studentCoursesBackup.myTree;
 
-public class ObserverI {
+import studentCoursesBackup.student.Student;
 
+public interface ObserverI {
+	public void update(Student student);
 }
