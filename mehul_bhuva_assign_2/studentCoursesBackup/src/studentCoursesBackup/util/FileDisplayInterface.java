@@ -1,5 +1,7 @@
 package studentCoursesBackup.util;
 
-public class FileDisplayInterface {
+import java.util.ArrayList;
 
+public interface FileDisplayInterface {
+	public void writeFile(ArrayList<String> stringList);
 }

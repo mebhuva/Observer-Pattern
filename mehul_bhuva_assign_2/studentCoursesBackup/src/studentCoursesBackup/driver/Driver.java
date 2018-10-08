@@ -2,8 +2,10 @@ package studentCoursesBackup.driver;
 
 import java.util.ArrayList;
 
+import studentCoursesBackup.util.FileDisplayInterface;
 import studentCoursesBackup.util.FileProcessor;
 import studentCoursesBackup.util.Results;
+import studentCoursesBackup.util.StdoutDisplayInterface;
 import studentCoursesBackup.util.TreeBuilder;
 
 /**
@@ -47,7 +49,25 @@ public class Driver {
 				treeList.add(backUpTwoTree);
 				treeList = fp.fileInsertProcessor(treeList);
 				treeList = fp.fileDeleteProcessor(treeList);
-				
+				StdoutDisplayInterface sdi=new Results();
+				FileDisplayInterface fdi=new Results();
+				ArrayList<String> stringListop1 = new ArrayList<String>();
+				stringListop1 = treeList.get(0).printTree(args[2]);
+				sdi.writeconsole(stringListop1);
+				fdi.writeFile(stringListop1);
+				StdoutDisplayInterface sdi2=new Results();
+				FileDisplayInterface fdi2=new Results();
+				ArrayList<String> stringListop2 = new ArrayList<String>();
+				stringListop2 = treeList.get(1).printTree(args[3]);
+				sdi2.writeconsole(stringListop2);
+				fdi2.writeFile(stringListop2);
+				StdoutDisplayInterface sdi3=new Results();
+				FileDisplayInterface fdi3=new Results();
+				ArrayList<String> stringListop3 = new ArrayList<String>();
+				stringListop3 = treeList.get(2).printTree(args[4]);
+				sdi3.writeconsole(stringListop3);
+				fdi3.writeFile(stringListop3);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {

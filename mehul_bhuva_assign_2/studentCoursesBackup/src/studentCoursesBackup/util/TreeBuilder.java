@@ -6,6 +6,7 @@ import studentCoursesBackup.myTree.Node;
 
 public class TreeBuilder {
 	Node root;
+	ArrayList<String> stringList = new ArrayList<String>();
 
 	public TreeBuilder() {
 		root = null;
@@ -94,5 +95,22 @@ public class TreeBuilder {
 			}
 		}
 	}
+	
+	public ArrayList<String> printTree(String filename)
+	{
+
+		stringList.add(filename);
+		inorder(this.root);
+		return stringList;
+	}
+	 public void inorder(Node root)
+	    {
+	        if (root != null)
+	        {
+	        	inorder(root.getLeft());
+	        	stringList.add(root.getKey() + " : " + String.join(", ",root.getCourseList()));
+	            inorder(root.getRight());
+	        }
+	    }
 
 }
