@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import studentCoursesBackup.student.Student;
 
-public class Node implements ObserverI, SubjectI {
+public class Node implements ObserverI, SubjectI , Cloneable {
 	private int key;
 	private ArrayList<String> courseList = new ArrayList<String>();
 	private String Course;
@@ -95,6 +95,9 @@ public class Node implements ObserverI, SubjectI {
 		this.originalTree = originalTree;
 	}
 	
+	public Node() {
+	}
+
 	public Node(Node node)
 	{
 		this.key = node.getKey();
@@ -102,6 +105,12 @@ public class Node implements ObserverI, SubjectI {
 		this.right = node.getRight();
 		this.Course = node.getCourse();
 		this.courseList.add(this.Course);
+		this.originalTree = node.originalTree;
+		if(this.originalTree == 0)
+		{
+			this.ListnerBackup1 = node.getListnerBackup1();
+			this.ListnerBackup2 = node.getListnerBackup2();
+		}
 	}
 
 	public Node(int bnumber, String course) {
@@ -114,18 +123,18 @@ public class Node implements ObserverI, SubjectI {
 	@Override
 	public void notifyAll(Student student) {
 		// TODO Auto-generated method stub
-		ListnerBackup1.update(student);
-		ListnerBackup2.update(student);
+		this.ListnerBackup1.update(student);
+		this.ListnerBackup2.update(student);
 	}
 
 	@Override
 	public void registerObserver(Node observer) {
 		// TODO Auto-generated method stub
-		ListnerBackup1 = new Node(observer.getKey(), observer.getCourse());
-		ListnerBackup2 = new Node(observer.getKey(), observer.getCourse());
+		this.ListnerBackup1 = observer.clone();
+		this.ListnerBackup2 = observer.clone();
 
 	}
-
+	
 	@Override
 	public void removeObserver(Node observer) {
 		// TODO Auto-generated method stub
@@ -155,4 +164,12 @@ public class Node implements ObserverI, SubjectI {
 		}
 
 	}
+	
+	@Override
+	public Node clone()
+    {
+		Node oldNode = new Node(this.key,this.Course);
+		oldNode.originalTree = 1;
+         return oldNode;
+    }
 }
