@@ -72,6 +72,29 @@ public class FileProcessor {
 	}
 
 	public ArrayList<TreeBuilder> fileDeleteProcessor(ArrayList<TreeBuilder> treeListIn) {
+		Scanner sc;
+		try {
+			sc = new Scanner(delete);
+			while (sc.hasNextLine()) {
+				String[] split = sc.nextLine().split(":");
+				int key = Integer.parseInt(split[0]);
+				String Course = split[1];
+				Node searchedNode = treeListIn.get(0).SearchNode(key);
+				Node searchedBackup1Node = treeListIn.get(1).SearchNode(key);
+				Node searchedBackup2Node = treeListIn.get(2).SearchNode(key);
+
+				if (searchedNode != null){
+					Student std = new Student(key, Course, "remove");
+					searchedNode.update(std);
+					searchedBackup1Node.update(std);
+					searchedBackup2Node.update(std);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		return treeListIn;
 	}
 
