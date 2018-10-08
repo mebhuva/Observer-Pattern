@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import studentCoursesBackup.student.Student;
 
+/**
+ * 
+ * Node Class implements  ObserverI, SubjectI and Cloneable to apply observer and mark/tag pattern
+ * @author Mehul
+ *
+ */
 public class Node implements ObserverI, SubjectI , Cloneable {
 	private int key;
 	private ArrayList<String> courseList = new ArrayList<String>();
@@ -15,89 +21,166 @@ public class Node implements ObserverI, SubjectI , Cloneable {
 	private String remove = "remove";
 	int originalTree = 0;
 
+	/**
+	 * @return key of current node
+	 */
 	public int getKey() {
 		return key;
 	}
 
+	/**
+	 * setKey sets key of current node
+	 * @param key
+	 */
 	public void setKey(int key) {
 		this.key = key;
 	}
 
+	/**
+	 * @return courseList
+	 */
 	public ArrayList<String> getCourseList() {
 		return courseList;
 	}
 
+	/**
+	 * sets courseList
+	 * @param courseList
+	 */
 	public void setCourseList(ArrayList<String> courseList) {
 		this.courseList = courseList;
 	}
 
+	/**
+	 * @return Course
+	 */
 	public String getCourse() {
 		return Course;
 	}
 
+	/**
+	 * sets course
+	 * @param newCourse
+	 */
 	public void setCourse(String newCourse) {
 		this.Course = newCourse;
 	}
 
+	/**
+	 * @return leftnode
+	 */
 	public Node getLeft() {
 		return left;
 	}
 
+	/**
+	 * sets left node
+	 * @param left
+	 */
 	public void setLeft(Node left) {
 		this.left = left;
 	}
 
+	/**
+	 * @return right node
+	 */
 	public Node getRight() {
 		return right;
 	}
 
+	/**
+	 * sets right node
+	 * @param right
+	 */
 	public void setRight(Node right) {
 		this.right = right;
 	}
 
+	/**
+	 * @return ListnerBackup1
+	 */
 	public Node getListnerBackup1() {
 		return ListnerBackup1;
 	}
 
+	/**
+	 * sets ListnerBackup1
+	 * @param listnerBackup1
+	 */
 	public void setListnerBackup1(Node listnerBackup1) {
 		ListnerBackup1 = listnerBackup1;
 	}
 
+	/**
+	 * @return ListnerBackup2
+	 */
 	public Node getListnerBackup2() {
 		return ListnerBackup2;
 	}
 
+	/**
+	 * sets ListnerBackup2
+	 * @param listnerBackup2
+	 */
 	public void setListnerBackup2(Node listnerBackup2) {
 		ListnerBackup2 = listnerBackup2;
 	}
 
+	/**
+	 * @return insert
+	 */
 	public String getInsert() {
 		return insert;
 	}
 
+	/**
+	 * sets insert
+	 * @param insert
+	 */
 	public void setInsert(String insert) {
 		this.insert = insert;
 	}
 
+	/**
+	 * @return remove
+	 */
 	public String getRemove() {
 		return remove;
 	}
 
+	/**
+	 * sets remove
+	 * @param remove
+	 */
 	public void setRemove(String remove) {
 		this.remove = remove;
 	}
 
+	/**
+	 * @return originalTree
+	 */
 	public int getOriginalTree() {
 		return originalTree;
 	}
 
+	/**
+	 * sets originalTree
+	 * @param originalTree
+	 */
 	public void setOriginalTree(int originalTree) {
 		this.originalTree = originalTree;
 	}
 	
+	/**
+	 * Default Constructor
+	 */
 	public Node() {
 	}
 
+	/**
+	 * Constructor to create node object
+	 * @param node
+	 */
 	public Node(Node node)
 	{
 		this.key = node.getKey();
@@ -113,6 +196,11 @@ public class Node implements ObserverI, SubjectI , Cloneable {
 		}
 	}
 
+	/**
+	 * This Constructor accepts bnumber and course to generate node object
+	 * @param bnumber
+	 * @param course
+	 */
 	public Node(int bnumber, String course) {
 		this.key = bnumber;
 		this.left = this.right = null;
@@ -172,4 +260,12 @@ public class Node implements ObserverI, SubjectI , Cloneable {
 		oldNode.originalTree = 1;
          return oldNode;
     }
+	
+	@Override
+	public String toString() {
+		return "Node [key=" + key + ", courseList=" + courseList + ", Course=" + Course + ", left=" + left + ", right="
+				+ right + ", ListnerBackup1=" + ListnerBackup1 + ", ListnerBackup2=" + ListnerBackup2 + ", insert="
+				+ insert + ", remove=" + remove + ", originalTree=" + originalTree + "]";
+	}
+
 }

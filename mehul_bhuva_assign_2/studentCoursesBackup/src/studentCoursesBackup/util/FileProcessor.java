@@ -8,16 +8,28 @@ import java.util.Scanner;
 import studentCoursesBackup.myTree.Node;
 import studentCoursesBackup.student.Student;
 
+/**
+ * FileProcessor class process insert and delete file
+ * @author Mehul
+ *
+ */
 public class FileProcessor {
 	private File insert;
 	private File delete;
-	private ArrayList<TreeBuilder> treeList = new ArrayList<TreeBuilder>();
 
+	/**
+	 * Constructor used to initialize insert and delete file object
+	 * @param args
+	 */
 	public FileProcessor(String[] args) {
 		this.insert = new File(args[0]);
 		this.delete = new File(args[1]);
 	}
 
+	/**
+	 * fileInsertExists checks if file insert exists or not
+	 * @return
+	 */
 	public int fileInsertExists() {
 		if (!this.insert.exists()) {
 			return 0;
@@ -26,6 +38,10 @@ public class FileProcessor {
 		}
 	}
 
+	/**
+	 * fileInsertExists checks if file delete exists or not
+	 * @return
+	 */
 	public int fileDeleteExists() {
 		if (!this.delete.exists()) {
 			return 0;
@@ -34,6 +50,11 @@ public class FileProcessor {
 		}
 	}
 
+	/**
+	 * fileInsertProcessor process the insert file
+	 * @param treeListIn
+	 * @return List of original , Backup1 and Backup2 tree by processing insert file
+	 */
 	public ArrayList<TreeBuilder> fileInsertProcessor(ArrayList<TreeBuilder> treeListIn) {
 
 		Scanner sc;
@@ -49,7 +70,7 @@ public class FileProcessor {
 
 				if (searchedNode == null) {
 					Node originalNode = new Node(key, Course);
-				    Node backupNode1 = originalNode.clone();
+					Node backupNode1 = originalNode.clone();
 					Node backupNode2 = originalNode.clone();
 					originalNode.registerObserver(backupNode1);
 					treeListIn.get(0).insert(originalNode);
@@ -71,6 +92,11 @@ public class FileProcessor {
 		return treeListIn;
 	}
 
+	/**
+	 * fileDeleteProcessor process the delete file
+	 * @param treeListIn
+	 * @return List of original , Backup1 and Backup2 tree by processing delete file
+	 */
 	public ArrayList<TreeBuilder> fileDeleteProcessor(ArrayList<TreeBuilder> treeListIn) {
 		Scanner sc;
 		try {
@@ -83,7 +109,7 @@ public class FileProcessor {
 				Node searchedBackup1Node = treeListIn.get(1).SearchNode(key);
 				Node searchedBackup2Node = treeListIn.get(2).SearchNode(key);
 
-				if (searchedNode != null){
+				if (searchedNode != null) {
 					Student std = new Student(key, Course, "remove");
 					searchedNode.update(std);
 					searchedBackup1Node.update(std);
@@ -96,6 +122,11 @@ public class FileProcessor {
 		}
 
 		return treeListIn;
+	}
+
+	@Override
+	public String toString() {
+		return "FileProcessor [insert=" + insert + ", delete=" + delete + "]";
 	}
 
 }

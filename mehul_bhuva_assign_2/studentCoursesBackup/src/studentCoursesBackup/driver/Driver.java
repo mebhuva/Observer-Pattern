@@ -9,11 +9,16 @@ import studentCoursesBackup.util.StdoutDisplayInterface;
 import studentCoursesBackup.util.TreeBuilder;
 
 /**
+ * Driver Class drives observer and listeners by processing insert and delete file
  * @author John Doe
  *
  */
 public class Driver {
 
+	/**
+	 * Main method is the entry point of this project
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		/*
@@ -39,32 +44,42 @@ public class Driver {
 					System.out.println("Delete File not found");
 					System.exit(0);
 				}
-				
+				//Creating three tree original , Backup1 and Backup2
 				TreeBuilder originalTree = new TreeBuilder();
 				TreeBuilder backUpOneTree = new TreeBuilder();
 				TreeBuilder backUpTwoTree = new TreeBuilder();
-				ArrayList<TreeBuilder> treeList=new ArrayList<TreeBuilder>();
+				ArrayList<TreeBuilder> treeList=new ArrayList<TreeBuilder>();//created tree list
 				treeList.add(originalTree);
 				treeList.add(backUpOneTree);
 				treeList.add(backUpTwoTree);
+				//Calling fileinsert and delete to process insert and delete file
 				treeList = fp.fileInsertProcessor(treeList);
 				treeList = fp.fileDeleteProcessor(treeList);
+				//Created object of StdoutDisplayInterface and FileDisplayInterface for original tree
 				StdoutDisplayInterface sdi=new Results();
 				FileDisplayInterface fdi=new Results();
 				ArrayList<String> stringListop1 = new ArrayList<String>();
+				//Calling printTree on original tree to create list of printing nodes
 				stringListop1 = treeList.get(0).printTree(args[2]);
+				//Writing original tree content using writeconsole and  writeFile
 				sdi.writeconsole(stringListop1);
 				fdi.writeFile(stringListop1);
+				//Created object of StdoutDisplayInterface and FileDisplayInterface for Backup1 tree
 				StdoutDisplayInterface sdi2=new Results();
 				FileDisplayInterface fdi2=new Results();
 				ArrayList<String> stringListop2 = new ArrayList<String>();
+				//Calling printTree on Backup2 tree to create list of printing nodes
 				stringListop2 = treeList.get(1).printTree(args[3]);
+				//Writing Backup1 tree content using writeconsole and  writeFile
 				sdi2.writeconsole(stringListop2);
 				fdi2.writeFile(stringListop2);
+				//Created object of StdoutDisplayInterface and FileDisplayInterface for Backup2 tree
 				StdoutDisplayInterface sdi3=new Results();
 				FileDisplayInterface fdi3=new Results();
 				ArrayList<String> stringListop3 = new ArrayList<String>();
+				//Calling printTree on Backup2 tree to create list of printing nodes
 				stringListop3 = treeList.get(2).printTree(args[4]);
+				//Writing Backup2 tree content using writeconsole and  writeFile
 				sdi3.writeconsole(stringListop3);
 				fdi3.writeFile(stringListop3);
 

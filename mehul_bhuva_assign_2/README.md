@@ -1,4 +1,4 @@
-# CSX42: Assignment 1
+# CSX42: Assignment 2
 ## Name: Mehul Bhuva
 
 -----------------------------------------------------------------------
@@ -6,12 +6,12 @@
 
 
 Following are the commands and the instructions to run ANT on your project.
-#### Note: build.xml is present in coursesRegistration/src folder.
+#### Note: build.xml is present in studentCoursesBackup/src folder.
 
 -----------------------------------------------------------------------
 ## Instruction to clean:
 
-####Command: ant -buildfile coursesRegistration/src/build.xml clean
+####Command: ant -buildfile studentCoursesBackup/src/build.xml clean
 
 Description: It cleans up all the .class files that were generated when you
 compiled your code.
@@ -19,14 +19,14 @@ compiled your code.
 -----------------------------------------------------------------------
 ## Instruction to compile:
 
-####Command: ant -buildfile coursesRegistration/src/build.xml all
+####Command: ant -buildfile studentCoursesBackup/src/build.xml all
 
 Description: Compiles your code and generates .class files inside the BUILD folder.
 
 -----------------------------------------------------------------------
 ## Instruction to run:
 
-####Command: ant -buildfile coursesRegistration/src/build.xml run -Darg0=student_coursePref.txt -Darg1=courseInfo.txt -Darg2=registration_results.txt
+####Command: ant -buildfile studentCoursesBackup/src/build.xml run -Darg0=input_file.txt -Darg1=delete_file.txt -Darg2=output1_file.txt -Darg3=output2_file.txt -Darg4=output3_file.txt 
 
 Note: Arguments accept the absolute path of the files.
 
@@ -36,27 +36,21 @@ Note: Arguments accept the absolute path of the files.
 
 Flow of the project
 
-1. Driver code excepts 3 arguments
-2. first two arguments should be two input files student_coursePrefs.txt and courseInfo.txt
-3. third argument should be the name of output file registration_results.txt
+1. Driver code excepts 5 arguments
+2. first two arguments should be two input files input_file.txt and delete_file.txt
+3. Next three argument should be the name of output file
 4. Driver code than pass the argument to the fileprocessor which checks if file exists in the current directory or not
-5. If file found then function fileexists print file found otherwise not found
-6. Driver code then calls two function readstudent data and coursedata which returns hashmap of student data and course list
-7. Driver sends this objects to the scheduler and scheduler process it and allocate the courses and return student data
-8. Driver calls result using stdoutinterface and filedisplyinterface to print allocated course data on console and output file respectively
+5. If file found then function fileexists print file not found
+6. Driver code then creates three tree original , backup1 and backup2 using TreeBuilder class
+7. Driver code then create list of tree and add all three tree in the list
+8. Driver code then calls fileprocessor insert and delete fuction to process insert and delete file
+9. Driver code then creates object of StdoutDisplayInterface and FileDisplayInterface to print result on console as well as in all three output files 
 
-Scheduler Algorithm:-
 
-1. Scheduler algorith iterates through hashmap of studentdetails 
-2. It checcks every student object in three passes
-3. First pass we check if preferences have any E or F courses in it then put it in wait queue
-4. Otherwise allocate first course to the students also check if course capacity is not full
-5. Second and third pass check for the time between courses and if courses are not allocated more than three for each student
-
-Time complexity :- O(n * n) 
+Time complexity :- O(nlogn) 
 
 ## References : 
-1. https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/    (To sort the hashmap using comparator)
+1. https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/   (To Create BST for TreeBuilder)
 2. https://stackoverflow.com/questions/4716503/reading-a-plain-text-file-in-java  (To read File using Scanner)
 
 -----------------------------------------------------------------------
@@ -69,6 +63,6 @@ I am involved in plagiarism or cheating an official form will be
 submitted to the Academic Honesty Committee of the Watson School to
 determine the action that needs to be taken. "
 
-Date: 09/23/2018
+Date: 10/08/2018
 
 
